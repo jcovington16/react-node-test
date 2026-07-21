@@ -10,10 +10,10 @@ const checkStudentId = async (id) => {
 }
 
 const getAllStudents = async (payload) => {
-    const students = await findAllStudents(payload);
-    if (students.length <= 0) {
-        throw new ApiError(404, "Students not found");
-    }
+    const students = await findAllStudents(payload); // An empty list is a valid result, not an error.
+    // if (students.length <= 0) {
+    //     throw new ApiError(404, "Students not found");
+    // }
 
     return students;
 }
