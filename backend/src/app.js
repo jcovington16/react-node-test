@@ -1,5 +1,5 @@
 const express = require("express");
-const cookieParser = require("cookie-parser"); 
+const cookieParser = require("cookie-parser");
 const configEnv = require("./config/.svn/config.env");
 
 const { handle404Error, handleGlobalError } = require("./middlewares");
