@@ -3,8 +3,10 @@ const { getAllStudents, addNewStudent, getStudentDetail, setStudentStatus, updat
 
 const handleGetAllStudents = asyncHandler(async (req, res) => {
     //write your code
-    const { userId } = req.query;
-    const students = await getAllStudents({userId}); // possibly only use userId???
+    // Optional filters: name, className, section, roll can be passed as query params
+    const { name, className, section, roll } = req.query;
+    console.log('Query params received:', { name, className, section, roll });
+    const students = await getAllStudents({ name, className, section, roll });
     res.json({ students });
 
 });

@@ -35,7 +35,9 @@ const addNewStudent = async (payload) => {
     try {
         const result = await addOrUpdateStudent(payload);
         if (!result.status) {
-            throw new ApiError(500, result.message);
+            // include DB function description (if any) to make debugging easier while testing
+            const details = result.description ? ` - ${result.description}` : "";
+            throw new ApiError(500, `${result.message}${details}`);
         }
 
         try {
@@ -45,7 +47,9 @@ const addNewStudent = async (payload) => {
             return { message: ADD_STUDENT_AND_BUT_EMAIL_SEND_FAIL }
         }
     } catch (error) {
-        throw new ApiError(500, "Unable to add student");
+        // log original error and surface message for easier local debugging
+        console.error('addNewStudent error:', error && error.message ? error.message : error);
+        throw new ApiError(500, error && error.message ? error.message : "Unable to add student");
     }
 }
 

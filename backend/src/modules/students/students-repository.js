@@ -39,6 +39,7 @@ const findAllStudents = async (payload) => {
 
     query += ' ORDER BY t1.id';
 
+    console.log('Repository query:', { query, queryParams });
     const { rows } = await processDBRequest({ query, queryParams });
     return rows;
 }
